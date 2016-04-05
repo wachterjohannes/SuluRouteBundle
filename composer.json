@@ -1,0 +1,12 @@
+{
+    "name": "sulu/url-bundle",
+    "require": {
+        "sulu/sulu": "dev-develop",
+        "massive/search-bundle": "@dev",
+        "sulu/document-manager": "@dev"
+    },
+    "require-dev": {
+        "jackalope/jackalope-doctrine-dbal": "~1.2.5",
+        "phpunit/phpunit": "^4.8"
+    }
+}
