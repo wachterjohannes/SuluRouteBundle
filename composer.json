@@ -1,5 +1,7 @@
 {
     "name": "sulu/url-bundle",
+    "license": "MIT",
+    "type": "symfony-bundle",
     "require": {
         "sulu/sulu": "dev-develop",
         "massive/search-bundle": "@dev",
