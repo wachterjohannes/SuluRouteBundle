@@ -6,7 +6,9 @@
         "sulu/document-manager": "@dev"
     },
     "require-dev": {
-        "jackalope/jackalope-doctrine-dbal": "~1.2.5",
+        "jackalope/jackalope-jackrabbit": "~1.2.0",
+        "doctrine/doctrine-bundle": "1.4.*",
+        "symfony/monolog-bundle": "2.4.*",
         "phpunit/phpunit": "^4.8"
     }
 }
