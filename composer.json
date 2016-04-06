@@ -1,5 +1,5 @@
 {
-    "name": "sulu/url-bundle",
+    "name": "sulu/route-bundle",
     "license": "MIT",
     "type": "symfony-bundle",
     "require": {
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Sulu\\Bundle\\UrlBundle\\": ""
+            "Sulu\\Bundle\\RouteBundle\\": ""
         }
     }
 }

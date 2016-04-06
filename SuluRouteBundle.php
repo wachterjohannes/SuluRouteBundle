@@ -9,13 +9,13 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Sulu\Bundle\UrlBundle;
+namespace Sulu\Bundle\RouteBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Entry point of sulu-url-bundle.
+ * Entry point of sulu-route-bundle.
  */
-class SuluUrlBundle extends Bundle
+class SuluRouteBundle extends Bundle
 {
 }

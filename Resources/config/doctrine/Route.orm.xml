@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity repository-class="Sulu\Bundle\RouteBundle\Repository\RouteRepository"
+            name="Sulu\Bundle\RouteBundle\Entity\Route">
+
+        <indexes>
+            <index columns="route"/>
+            <index columns="webspaceKey"/>
+        </indexes>
+
+        <unique-constraints>
+            <unique-constraint columns="route,webspaceKey"/>
+        </unique-constraints>
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="route" type="string" length="255"/>
+        <field name="webspaceKey" type="string" length="255"/>
+
+    </entity>
+</doctrine-mapping>
