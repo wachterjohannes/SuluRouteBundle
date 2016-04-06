@@ -12,9 +12,8 @@
 namespace Sulu\Bundle\RouteBundle\Manager;
 
 /**
- * Defines the interface to interact with routes
+ * Defines the interface to interact with routes.
  */
 interface RouteManagerInterface
 {
-
 }
