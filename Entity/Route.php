@@ -32,7 +32,12 @@ class Route
     private $webspaceKey;
 
     /**
-     * Get id
+     * @var string
+     */
+    private $entityClass;
+
+    /**
+     * Get id.
      *
      * @return int
      */
@@ -42,7 +47,7 @@ class Route
     }
 
     /**
-     * Set route
+     * Set route.
      *
      * @param string $route
      *
@@ -56,7 +61,7 @@ class Route
     }
 
     /**
-     * Get route
+     * Get route.
      *
      * @return string
      */
@@ -66,7 +71,7 @@ class Route
     }
 
     /**
-     * Set webspaceKey
+     * Set webspaceKey.
      *
      * @param string $webspaceKey
      *
@@ -80,7 +85,7 @@ class Route
     }
 
     /**
-     * Get webspaceKey
+     * Get webspaceKey.
      *
      * @return string
      */
@@ -88,5 +93,28 @@ class Route
     {
         return $this->webspaceKey;
     }
-}
 
+    /**
+     * Get entityClass.
+     *
+     * @return string
+     */
+    public function getEntityClass()
+    {
+        return $this->entityClass;
+    }
+
+    /**
+     * Set entityClass.
+     *
+     * @param string $entityClass
+     *
+     * @return Route
+     */
+    public function setEntityClass($entityClass)
+    {
+        $this->entityClass = $entityClass;
+
+        return $this;
+    }
+}

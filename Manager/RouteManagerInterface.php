@@ -9,13 +9,12 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Sulu\Bundle\RouteBundle\Entity;
-
-use Sulu\Component\Persistence\Repository\ORM\EntityRepository;
+namespace Sulu\Bundle\RouteBundle\Manager;
 
 /**
- * Contains special queries to find routes.
+ * Defines the interface to interact with routes
  */
-class RouteRepository extends EntityRepository
+interface RouteManagerInterface
 {
+
 }
