@@ -21,8 +21,8 @@ class RouteRepository extends EntityRepository implements RouteRepositoryInterfa
     /**
      * {@inheritdoc}
      */
-    public function findByRoute($route, $locale)
+    public function findByPath($path, $locale)
     {
-        return $this->findOneBy(['route' => $route, 'locale' => $locale]);
+        return $this->findOneBy(['path' => $path, 'locale' => $locale]);
     }
 }

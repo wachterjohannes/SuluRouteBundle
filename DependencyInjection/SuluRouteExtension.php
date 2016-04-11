@@ -11,6 +11,7 @@
 
 namespace Sulu\Bundle\RouteBundle\DependencyInjection;
 
+use Sulu\Bundle\PersistenceBundle\DependencyInjection\PersistenceExtensionTrait;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
@@ -21,13 +22,22 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  */
 class SuluRouteExtension extends Extension
 {
+    use PersistenceExtensionTrait;
+
     /**
      * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+        $container->setParameter('sulu_route.mappings', $config['mappings']);
+
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('routing.xml');
-        $loader->load('entity.xml');
+        $loader->load('manager.xml');
+        $loader->load('generator.xml');
+
+        $this->configurePersistence($config['objects'], $container);
     }
 }

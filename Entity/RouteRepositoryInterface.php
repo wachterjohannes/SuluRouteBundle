@@ -11,6 +11,8 @@
 
 namespace Sulu\Bundle\RouteBundle\Entity;
 
+use Sulu\Bundle\RouteBundle\Model\RouteInterface;
+
 /**
  * Contains special queries to find routes.
  */
@@ -19,17 +21,17 @@ interface RouteRepositoryInterface
     /**
      * Returns new route entity.
      *
-     * @return Route
+     * @return RouteInterface
      */
     public function createNew();
 
     /**
      * Returns route-entity by route.
      *
-     * @param string $route
-     * @param string $localization
+     * @param string $path
+     * @param string $locale
      *
-     * @return Route
+     * @return RouteInterface
      */
-    public function findByRoute($route, $localization);
+    public function findByPath($path, $locale);
 }
