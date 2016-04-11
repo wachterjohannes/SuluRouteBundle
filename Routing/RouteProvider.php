@@ -42,8 +42,8 @@ class RouteProvider implements RouteProviderInterface
     private $routeDefaultsProvider;
 
     /**
-     * @param RouteRepositoryInterface $routeRepository
-     * @param RequestAnalyzerInterface $requestAnalyzer
+     * @param RouteRepositoryInterface       $routeRepository
+     * @param RequestAnalyzerInterface       $requestAnalyzer
      * @param RouteDefaultsProviderInterface $routeDefaultsProvider
      */
     public function __construct(
@@ -62,13 +62,13 @@ class RouteProvider implements RouteProviderInterface
     public function getRouteCollectionForRequest(Request $request)
     {
         $collection = new RouteCollection();
-        $route = PathHelper::relativizePath(
+        $path = PathHelper::relativizePath(
             $request->getPathInfo(),
             $this->requestAnalyzer->getResourceLocatorPrefix()
         );
 
-        $routeEntity = $this->routeRepository->findByRoute('/'.$route, $request->getLocale());
-        if (!$routeEntity || !$this->routeDefaultsProvider->supports($routeEntity->getEntityClass())) {
+        $route = $this->routeRepository->findByPath('/'.$path, $request->getLocale());
+        if (!$route || !$this->routeDefaultsProvider->supports($route->getEntityClass())) {
             return $collection;
         }
 
@@ -78,7 +78,7 @@ class RouteProvider implements RouteProviderInterface
             uniqid('sulu_route_', true),
             new Route(
                 $request->getPathInfo(),
-                $this->routeDefaultsProvider->getByEntity($routeEntity->getEntityClass(), $routeEntity->getEntityId())
+                $this->routeDefaultsProvider->getByEntity($route->getEntityClass(), $route->getEntityId())
             )
         );
 

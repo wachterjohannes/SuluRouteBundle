@@ -61,7 +61,7 @@ class RouteProviderTest extends \PHPUnit_Framework_TestCase
         $request->getPathInfo()->willReturn('/de/test');
         $request->getLocale()->willReturn('de');
 
-        $this->routeRepository->findByRoute('/test', 'de')->willReturn(null);
+        $this->routeRepository->findByPath('/test', 'de')->willReturn(null);
 
         $collection = $this->routeProvider->getRouteCollectionForRequest($request->reveal());
 
@@ -77,7 +77,7 @@ class RouteProviderTest extends \PHPUnit_Framework_TestCase
         $routeEntity = $this->prophesize(Route::class);
         $routeEntity->getEntityClass()->willReturn('Example');
 
-        $this->routeRepository->findByRoute('/test', 'de')->willReturn($routeEntity->reveal());
+        $this->routeRepository->findByPath('/test', 'de')->willReturn($routeEntity->reveal());
         $this->defaultsProvider->supports('Example')->willReturn(false);
 
         $collection = $this->routeProvider->getRouteCollectionForRequest($request->reveal());
@@ -95,7 +95,7 @@ class RouteProviderTest extends \PHPUnit_Framework_TestCase
         $routeEntity->getEntityClass()->willReturn('Example');
         $routeEntity->getEntityId()->willReturn('1');
 
-        $this->routeRepository->findByRoute('/test', 'de')->willReturn($routeEntity->reveal());
+        $this->routeRepository->findByPath('/test', 'de')->willReturn($routeEntity->reveal());
         $this->defaultsProvider->supports('Example')->willReturn(true);
         $this->defaultsProvider->getByEntity('Example', '1')->willReturn(['test' => 1]);
 

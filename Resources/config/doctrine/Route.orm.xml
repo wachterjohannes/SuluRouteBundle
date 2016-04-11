@@ -7,21 +7,13 @@
             name="Sulu\Bundle\RouteBundle\Entity\Route" table="ro_routes">
 
         <indexes>
-            <index columns="route"/>
+            <index columns="path"/>
             <index columns="locale"/>
         </indexes>
 
         <unique-constraints>
-            <unique-constraint columns="route,locale"/>
+            <unique-constraint columns="path,locale"/>
         </unique-constraints>
-
-        <id name="id" type="integer" column="id">
-            <generator strategy="AUTO"/>
-        </id>
-        <field name="route" type="string" length="255"/>
-        <field name="locale" type="string" length="8"/>
-        <field name="entityClass" type="string" length="255"/>
-        <field name="entityId" type="string" length="255"/>
 
     </entity>
 </doctrine-mapping>
