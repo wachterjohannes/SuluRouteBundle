@@ -29,12 +29,17 @@ class Route
     /**
      * @var string
      */
-    private $webspaceKey;
+    private $locale;
 
     /**
      * @var string
      */
     private $entityClass;
+
+    /**
+     * @var string
+     */
+    private $entityId;
 
     /**
      * Get id.
@@ -71,27 +76,27 @@ class Route
     }
 
     /**
-     * Set webspaceKey.
+     * Set locale.
      *
-     * @param string $webspaceKey
+     * @param string $locale
      *
      * @return Route
      */
-    public function setWebspaceKey($webspaceKey)
+    public function setLocale($locale)
     {
-        $this->webspaceKey = $webspaceKey;
+        $this->locale = $locale;
 
         return $this;
     }
 
     /**
-     * Get webspaceKey.
+     * Get locale.
      *
      * @return string
      */
-    public function getWebspaceKey()
+    public function getLocale()
     {
-        return $this->webspaceKey;
+        return $this->locale;
     }
 
     /**
@@ -114,6 +119,30 @@ class Route
     public function setEntityClass($entityClass)
     {
         $this->entityClass = $entityClass;
+
+        return $this;
+    }
+
+    /**
+     * Get entityId.
+     *
+     * @return string
+     */
+    public function getEntityId()
+    {
+        return $this->entityId;
+    }
+
+    /**
+     * Set entityId.
+     *
+     * @param string $entityId
+     *
+     * @return Route
+     */
+    public function setEntityId($entityId)
+    {
+        $this->entityId = $entityId;
 
         return $this;
     }

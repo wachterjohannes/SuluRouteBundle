@@ -16,6 +16,13 @@ use Sulu\Component\Persistence\Repository\ORM\EntityRepository;
 /**
  * Contains special queries to find routes.
  */
-class RouteRepository extends EntityRepository
+class RouteRepository extends EntityRepository implements RouteRepositoryInterface
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function findByRoute($route, $locale)
+    {
+        return $this->findOneBy(['route' => $route, 'locale' => $locale]);
+    }
 }
