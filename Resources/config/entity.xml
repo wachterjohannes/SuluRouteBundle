@@ -7,8 +7,19 @@
         <service id="sulu_route.entity.route_repository" class="Sulu\Bundle\RouteBundle\Entity\RouteRepository">
             <factory service="doctrine.orm.entity_manager" method="getRepository"/>
             <argument type="string">SuluRouteBundle:Route</argument>
+        </service>
 
-            <tag name="sulu.context" context="website"/>
+        <service id="sulu_route.entity.route_manager" class="Sulu\Bundle\RouteBundle\Manager\RouteManager">
+            <argument type="service" id="sulu_route.generator.route_generator"/>
+            <argument type="service" id="sulu_route.entity.route_repository"/>
+            <argument>%sulu_route.mappings%</argument>
+        </service>
+
+        <service id="sulu_route.entity.event_listener"
+                 class="Sulu\Bundle\RouteBundle\EventListener\CreateRouteListener" lazy="true">
+            <argument type="service" id="sulu_route.entity.route_manager"/>
+
+            <tag name="doctrine.event_listener" event="postPersist"/>
         </service>
     </services>
 </container>
