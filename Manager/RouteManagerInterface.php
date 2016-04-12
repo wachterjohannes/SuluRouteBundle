@@ -25,9 +25,20 @@ interface RouteManagerInterface
      *
      * @param RoutableInterface $entity
      *
-     * @return RouteInterface
+     * @throws RouteAlreadyCreatedException
      *
-     * @thorws RouteAlreadyCreatedException
+     * @return RouteInterface
      */
     public function create(RoutableInterface $entity);
+
+    /**
+     * Creates a new route and handles the histories if the route has changed.
+     *
+     * @param RoutableInterface $entity
+
+     * @throws RouteNotCreatedException
+     *
+     * @return RouteInterface|null
+     */
+    public function update(RoutableInterface $entity);
 }

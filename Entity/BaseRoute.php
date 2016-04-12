@@ -44,9 +44,22 @@ abstract class BaseRoute implements RouteInterface
     private $entityId;
 
     /**
-     * Get id.
-     *
-     * @return int
+     * @var bool
+     */
+    private $history = false;
+
+    /**
+     * @var RouteInterface
+     */
+    private $target;
+
+    /**
+     * @var RouteInterface[]
+     */
+    protected $histories;
+
+    /**
+     * {@inheritdoc}
      */
     public function getId()
     {
@@ -54,11 +67,7 @@ abstract class BaseRoute implements RouteInterface
     }
 
     /**
-     * Set route.
-     *
-     * @param string $path
-     *
-     * @return RouteInterface
+     * {@inheritdoc}
      */
     public function setPath($path)
     {
@@ -68,9 +77,7 @@ abstract class BaseRoute implements RouteInterface
     }
 
     /**
-     * Get route.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getPath()
     {
@@ -78,11 +85,7 @@ abstract class BaseRoute implements RouteInterface
     }
 
     /**
-     * Set locale.
-     *
-     * @param string $locale
-     *
-     * @return RouteInterface
+     * {@inheritdoc}
      */
     public function setLocale($locale)
     {
@@ -92,9 +95,7 @@ abstract class BaseRoute implements RouteInterface
     }
 
     /**
-     * Get locale.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getLocale()
     {
@@ -102,9 +103,7 @@ abstract class BaseRoute implements RouteInterface
     }
 
     /**
-     * Get entityClass.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getEntityClass()
     {
@@ -112,11 +111,7 @@ abstract class BaseRoute implements RouteInterface
     }
 
     /**
-     * Set entityClass.
-     *
-     * @param string $entityClass
-     *
-     * @return RouteInterface
+     * {@inheritdoc}
      */
     public function setEntityClass($entityClass)
     {
@@ -126,9 +121,7 @@ abstract class BaseRoute implements RouteInterface
     }
 
     /**
-     * Get entityId.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getEntityId()
     {
@@ -136,15 +129,65 @@ abstract class BaseRoute implements RouteInterface
     }
 
     /**
-     * Set entityId.
-     *
-     * @param string $entityId
-     *
-     * @return RouteInterface
+     * {@inheritdoc}
      */
     public function setEntityId($entityId)
     {
         $this->entityId = $entityId;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isHistory()
+    {
+        return $this->history;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setHistory($history)
+    {
+        $this->history = $history;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTarget()
+    {
+        return $this->target;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setTarget(RouteInterface $target)
+    {
+        $this->target = $target;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHistories()
+    {
+        return $this->histories;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addHistory(RouteInterface $history)
+    {
+        $this->histories[] = $history;
 
         return $this;
     }
