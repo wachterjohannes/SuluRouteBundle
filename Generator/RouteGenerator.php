@@ -60,7 +60,7 @@ class RouteGenerator implements RouteGeneratorInterface
         if (0 !== strpos($path, '/')) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    'Generated non-absolute route "%s" for object "%s"',
+                    'Generated path "%s" for object "%s" has to start with a slash',
                     $path,
                     get_class($entity)
                 )

@@ -39,9 +39,9 @@ class AutoIncrementConflictResolver implements ConflictResolverInterface
         $conflict = $this->routeRepository->findByPath($route->getPath(), $route->getLocale());
         while ($conflict) {
             if ($conflict && $conflict->getEntityClass() === $route->getEntityClass()
-                && $conflict->getEntityId() === $route->getEntityId()
+                && $conflict->getEntityId() == $route->getEntityId()
             ) {
-                // if conflict is found but has the same entity relation return this instead of the newly created route
+                // if conflict is found but has the same entity relation return this instead of the newly created route.
                 return $conflict;
             }
 

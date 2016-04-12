@@ -19,7 +19,7 @@ interface RouteGeneratorInterface
     /**
      * Generates route by route-schema for given entity.
      *
-     * @param mixed  $entity
+     * @param object $entity
      * @param string $routeSchema
      *
      * @return string

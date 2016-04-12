@@ -5,12 +5,13 @@
 
     <services>
         <service id="sulu_route.generator.route_generator" class="Sulu\Bundle\RouteBundle\Generator\RouteGenerator">
-            <argument type="service" id="sulu_route.generator.property_token_provider"/>
+            <argument type="service" id="sulu_route.generator.expression_token_provider"/>
             <argument type="service" id="sulu_document_manager.slugifier"/>
         </service>
 
-        <service id="sulu_route.generator.property_token_provider"
-                 class="Sulu\Bundle\RouteBundle\Generator\PropertyTokenProvider">
+        <service id="sulu_route.generator.expression_token_provider"
+                 class="Sulu\Bundle\RouteBundle\Generator\SymfonyExpressionTokenProvider">
+            <argument type="service" id="translator"/>
         </service>
     </services>
 </container>

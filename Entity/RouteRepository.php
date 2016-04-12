@@ -11,6 +11,7 @@
 
 namespace Sulu\Bundle\RouteBundle\Entity;
 
+use Doctrine\ORM\NoResultException;
 use Sulu\Component\Persistence\Repository\ORM\EntityRepository;
 
 /**
@@ -23,6 +24,18 @@ class RouteRepository extends EntityRepository implements RouteRepositoryInterfa
      */
     public function findByPath($path, $locale)
     {
-        return $this->findOneBy(['path' => $path, 'locale' => $locale]);
+        $query = $this->createQueryBuilder('entity')
+            ->addSelect('target')
+            ->leftJoin('entity.target', 'target')
+            ->andWhere('entity.path = :path')
+            ->andWhere('entity.locale = :locale')
+            ->getQuery()
+            ->setParameters(['path' => $path, 'locale' => $locale]);
+
+        try {
+            return $query->getSingleResult();
+        } catch (NoResultException $e) {
+            return;
+        }
     }
 }

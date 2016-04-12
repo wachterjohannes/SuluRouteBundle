@@ -72,6 +72,24 @@ class RouteProvider implements RouteProviderInterface
             return $collection;
         }
 
+        if ($route->isHistory()) {
+            $collection->add(
+                uniqid('sulu_history_route_', true),
+                new Route(
+                    $request->getPathInfo(),
+                    [
+                        '_controller' => 'SuluWebsiteBundle:Redirect:redirect',
+                        'url' => $request->getSchemeAndHttpHost()
+                            . $this->requestAnalyzer->getResourceLocatorPrefix()
+                            . $route->getTarget()->getPath()
+                            . ($request->getQueryString() ? ('?' . $request->getQueryString()) : ''),
+                    ]
+                )
+            );
+
+            return $collection;
+        }
+
         // TODO move route-name to entity
 
         $collection->add(

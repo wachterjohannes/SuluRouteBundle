@@ -23,6 +23,8 @@ interface TokenProviderInterface
      * @param string $name
      *
      * @return string
+     *
+     * @throws CannotEvaluateTokenException
      */
     public function provide($entity, $name);
 }

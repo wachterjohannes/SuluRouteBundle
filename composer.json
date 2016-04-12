@@ -3,9 +3,7 @@
     "license": "MIT",
     "type": "symfony-bundle",
     "require": {
-        "sulu/sulu": "dev-develop",
-        "massive/search-bundle": "@dev",
-        "sulu/document-manager": "@dev",
+        "sulu/sulu": "1.2.*",
         "symfony-cmf/slugifier-api": "^1.0"
     },
     "require-dev": {

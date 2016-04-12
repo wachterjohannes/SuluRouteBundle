@@ -45,13 +45,13 @@ class RouteGeneratorTest extends \PHPUnit_Framework_TestCase
     {
         $entity = $this->prophesize(RoutableInterface::class);
 
-        $this->tokenProvider->provide($entity->reveal(), 'title')->willReturn('Test Title');
-        $this->tokenProvider->provide($entity->reveal(), 'id')->willReturn(1);
+        $this->tokenProvider->provide($entity->reveal(), 'object.getTitle()')->willReturn('Test Title');
+        $this->tokenProvider->provide($entity->reveal(), 'object.getId()')->willReturn(1);
 
         $this->slugifier->slugify('Test Title')->willReturn('test-title');
         $this->slugifier->slugify(1)->willReturn('1');
 
-        $path = $this->generator->generate($entity->reveal(), '/prefix/{title}/postfix/{id}');
+        $path = $this->generator->generate($entity->reveal(), '/prefix/{object.getTitle()}/postfix/{object.getId()}');
 
         $this->assertEquals('/prefix/test-title/postfix/1', $path);
     }
