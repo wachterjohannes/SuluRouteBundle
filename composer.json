@@ -5,7 +5,8 @@
     "require": {
         "sulu/sulu": "dev-develop",
         "massive/search-bundle": "@dev",
-        "sulu/document-manager": "@dev"
+        "sulu/document-manager": "@dev",
+        "symfony-cmf/slugifier-api": "^1.0"
     },
     "require-dev": {
         "jackalope/jackalope-jackrabbit": "~1.2.0",
