@@ -45,7 +45,7 @@ class AutoIncrementConflictResolver implements ConflictResolverInterface
                 return $conflict;
             }
 
-            $route->setPath($path.'-'.($i++));
+            $route->setPath($path . '-' . ($i++));
             $conflict = $this->routeRepository->findByPath($route->getPath(), $route->getLocale());
         }
 

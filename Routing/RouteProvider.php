@@ -67,7 +67,7 @@ class RouteProvider implements RouteProviderInterface
             $this->requestAnalyzer->getResourceLocatorPrefix()
         );
 
-        $route = $this->routeRepository->findByPath('/'.$path, $request->getLocale());
+        $route = $this->routeRepository->findByPath('/' . $path, $request->getLocale());
         if (!$route || !$this->routeDefaultsProvider->supports($route->getEntityClass())) {
             return $collection;
         }

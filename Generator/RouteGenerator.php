@@ -50,7 +50,7 @@ class RouteGenerator implements RouteGeneratorInterface
         $tokenNames = $matches[1];
 
         foreach ($tokenNames as $index => $name) {
-            $tokenName = '{'.$name.'}';
+            $tokenName = '{' . $name . '}';
             $tokenValue = $this->tokenProvider->provide($entity, $name);
 
             $tokens[$tokenName] = $this->slugifier->slugify($tokenValue);
