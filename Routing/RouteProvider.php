@@ -67,8 +67,26 @@ class RouteProvider implements RouteProviderInterface
             $this->requestAnalyzer->getResourceLocatorPrefix()
         );
 
-        $route = $this->routeRepository->findByPath('/'.$path, $request->getLocale());
+        $route = $this->routeRepository->findByPath('/' . $path, $request->getLocale());
         if (!$route || !$this->routeDefaultsProvider->supports($route->getEntityClass())) {
+            return $collection;
+        }
+
+        if ($route->isHistory()) {
+            $collection->add(
+                uniqid('sulu_history_route_', true),
+                new Route(
+                    $request->getPathInfo(),
+                    [
+                        '_controller' => 'SuluWebsiteBundle:Redirect:redirect',
+                        'url' => $request->getSchemeAndHttpHost()
+                            . $this->requestAnalyzer->getResourceLocatorPrefix()
+                            . $route->getTarget()->getPath()
+                            . ($request->getQueryString() ? ('?' . $request->getQueryString()) : '')
+                    ]
+                )
+            );
+
             return $collection;
         }
 

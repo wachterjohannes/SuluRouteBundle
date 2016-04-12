@@ -11,7 +11,9 @@
 
 namespace Sulu\Bundle\RouteBundle;
 
+use Sulu\Bundle\PersistenceBundle\PersistenceBundleTrait;
 use Sulu\Bundle\RouteBundle\DependencyInjection\CompilerPass\DefaultsProviderCompilerPass;
+use Sulu\Bundle\RouteBundle\Model\RouteInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -20,6 +22,8 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class SuluRouteBundle extends Bundle
 {
+    use PersistenceBundleTrait;
+
     /**
      * {@inheritdoc}
      */
@@ -28,5 +32,11 @@ class SuluRouteBundle extends Bundle
         parent::build($container);
 
         $container->addCompilerPass(new DefaultsProviderCompilerPass());
+        $this->buildPersistence(
+            [
+                RouteInterface::class => 'sulu.model.route.class',
+            ],
+            $container
+        );
     }
 }

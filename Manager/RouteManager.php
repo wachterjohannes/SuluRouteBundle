@@ -73,4 +73,39 @@ class RouteManager implements RouteManagerInterface
 
         return $route;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function update(RoutableInterface $entity)
+    {
+        if (null === $entity->getRoute()) {
+            throw new RouteNotCreatedException($entity);
+        }
+
+        $path = $this->routeGenerator->generate($entity, $this->mappings[get_class($entity)]['route_schema']);
+        if ($path === $entity->getRoute()->getPath()) {
+            return;
+        }
+
+        $route = $this->routeRepository->createNew()
+            ->setPath($path)
+            ->setEntityClass(get_class($entity))
+            ->setEntityId($entity->getId())
+            ->setLocale($entity->getLocale());
+
+        $historyRoute = $entity->getRoute()
+            ->setHistory(true)
+            ->setTarget($route);
+        $route->addHistory($historyRoute);
+
+        foreach ($historyRoute->getHistories() as $historyRoute) {
+            $route->addHistory($historyRoute);
+            $historyRoute->setTarget($route);
+        }
+
+        $entity->setRoute($route);
+
+        return $route;
+    }
 }

@@ -88,4 +88,52 @@ interface RouteInterface
      * @return BaseRoute
      */
     public function setEntityId($entityId);
+
+    /**
+     * Get history.
+     *
+     * @return bool
+     */
+    public function isHistory();
+
+    /**
+     * Set history.
+     *
+     * @param bool $history
+     *
+     * @return RouteInterface
+     */
+    public function setHistory($history);
+
+    /**
+     * Get target.
+     *
+     * @return RouteInterface
+     */
+    public function getTarget();
+
+    /**
+     * Set target.
+     *
+     * @param RouteInterface $target
+     *
+     * @return RouteInterface
+     */
+    public function setTarget(RouteInterface $target);
+
+    /**
+     * Get histories.
+     *
+     * @return RouteInterface[]
+     */
+    public function getHistories();
+
+    /**
+     * Add now history.
+     *
+     * @param RouteInterface $history
+     *
+     * @return RouteInterface
+     */
+    public function addHistory(RouteInterface $history);
 }
